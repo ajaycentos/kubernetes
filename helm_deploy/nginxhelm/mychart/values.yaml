@@ -1,0 +1,19 @@
+namespace: ajnginx
+
+deployment:
+  app_name: mynginx
+  image: nginx:latest
+  requests_cpu: 2m
+  limits_cpu: 3m  
+    
+
+service:
+  port: 80
+  targetPort: 80
+  type: LoadBalancer
+
+hpa:
+  enabled: true  # Set this to true to enable the HPA
+  minReplicas: 2
+  maxReplicas: 5
+  cpu: 60

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.deployment.app_name}}
+  namespace: {{.Values.namespace}} 
+spec:
+  selector:
+    matchLabels:
+      app: {{.Values.deployment.app_name}} 
+  template:
+    metadata:
+      labels:
+        app: {{.Values.deployment.app_name}}
+    spec:
+      containers:
+      - name: nginx
+        image: {{.Values.deployment.image}}
+        resources:
+          requests:
+            cpu: {{.Values.deployment.requests_cpu}}
+          limits: 
+            cpu: {{.Values.deployment.limits_cpu}}
+        ports:
+        - containerPort: 80
